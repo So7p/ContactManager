@@ -40,7 +40,7 @@ namespace ContactManager.WebApi.Controllers
             return Ok(contact);
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateAsync([FromForm] ContactForCreationDto contactForCreationDto)
         {
             if (!ModelState.IsValid)
@@ -55,7 +55,7 @@ namespace ContactManager.WebApi.Controllers
             return StatusCode(201);
         }
 
-        [HttpPut]
+        [HttpPut("update")]
         public async Task<IActionResult> UpdateAsync([FromForm] ContactForUpdateDto contactForUpdateDto)
         {
             if (!ModelState.IsValid)
@@ -70,7 +70,7 @@ namespace ContactManager.WebApi.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:int}")]
+        [HttpDelete("delete/{id:int}")]
         public async Task<IActionResult> DeleteAsync([FromRoute] int id)
         {
             await _contactService.DeleteAsync(id);
